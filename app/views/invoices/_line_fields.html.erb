@@ -1,0 +1,9 @@
+<div class="items_table_row">
+	<div class="input-sm item_table_cell" style="padding: 3px 1px 0 0; width:2%"><%= f.link_to_remove image_tag("remove.png", :border => 0, :width => 13, :height => 13), :class => "remove" %></div>
+	<div class="input-sm item_table_cell" style="padding: 3px 1px 0 0; width:45%"><%= f.text_field :product_description, :class => "form-control input-sm", :placeholder => "Product/Service" %></div>
+	<div class="input-sm item_table_cell" style="padding: 3px 1px 0 0; width:6%"><%= f.text_field :unit, :class => "form-control input-sm", :placeholder => "Unit" %></div>
+	<div class="input-sm item_table_cell" style="padding: 3px 1px 0 0; width:11%"><%= f.text_field :unit_value, :class => "form-control input-sm unit_value", :placeholder => "Unit value" %></div>
+	<div class="input-sm item_table_cell" style="padding: 3px 1px 0 0; width:11%"><%= f.text_field :quantity, :class => "form-control input-sm quantity", :placeholder => "Qnt" %></div>
+	<div class="input-sm item_table_cell" style="padding: 3px 1px 0 0; width:10%"><%= f.text_field :vat_value, :class => "form-control input-sm vat_value", :placeholder => "VAT" %></div>
+	<div class="input-sm item_table_cell" style="padding: 3px 1px 0 0; width:15%"><%= f.text_field :line_total, :class => "form-control input-sm line_total", :placeholder => "Total" %></div>
+</div>

@@ -1,0 +1,146 @@
+<div class="container">
+	<div class="invoice">
+		<%= form_for @invoice do |f| %>
+			<% if @invoice.errors.any? %>
+				<div id="error_explanation">
+					<h2><%= pluralize(@invoice.errors.count, "error") %> prohibited this invoice from being saved:</h2>
+					<ul>
+					<% @invoice.errors.full_messages.each do |msg| %>
+						<li><%= msg %></li>
+					<% end %>
+					</ul>
+				</div>
+			<% end %>
+			<div class="row" style="padding-bottom: 30px;">
+				<div class="col-md-4">
+					<div class="form-horizontal form-group">
+						<p><%= image_tag @invoice.image.url %></p>
+					</div>
+				</div>
+				<div class="col-md-4"></div>
+				<div class="col-md-4">
+					<div class="form-horizontal form-group">
+						<div class="input-group col-lg-8 pull-right">
+							<span class="input-group-addon">#</span>
+							<%= f.text_field :number, :class => "form-control input-sm", :disabled => true %>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-4">
+					<%= f.fields_for :from  do |from| %>
+						<div class="form-horizontal form-group">
+							<%= from.label :name, "From", :class => "col-lg-2 control-label" %>
+							<div class="col-lg-12" style="padding-bottom:5px;">
+								<%= from.text_field :name, :class => "form-control input-sm", :disabled => true %>
+							</div>
+							<div class="col-lg-12" style="padding-bottom:5px;">
+								<%= from.email_field :email, :class => "form-control input-sm", :disabled => true %>
+							</div>
+							<div class="col-lg-12">
+								<%= from.text_area :more_info, :class => "form-control input-sm", :rows => "3", :disabled => true %>
+							</div>
+						</div>
+					<% end %>
+				</div>
+				<div class="col-md-4">
+					<%= f.fields_for :to do |to| %>
+						<div class="form-horizontal form-group">
+							<%= to.label :name, "To", :class => "col-lg-2 control-label" %>
+							<div class="col-lg-12" style="padding-bottom:5px;">
+								<%= to.text_field :name, :class => "form-control input-sm", :disabled => true %>
+							</div>
+							<div class="col-lg-12" style="padding-bottom:5px;">
+								<%= to.email_field :email, :class => "form-control input-sm", :disabled => true %>
+							</div>
+							<div class="col-lg-12">
+								<%= to.text_area :more_info, :class => "form-control input-sm", :rows => "3", :disabled => true %>
+							</div>
+						</div>
+					<% end %>
+				</div>
+				<div class="col-md-4">
+					<div class=" form-horizontal form-group" style="padding-top:20px;">
+						<%= f.label :date_issued, "Date Issued:", :class => "control-label" %>
+						<div class="col-lg-12" style="padding-bottom:10px;">
+							<%= f.date_select :date_issued, :class => "form-control input-sm", :disabled => true %>
+						</div>
+						<%= f.label :payment_due, "Payment due:", :class => "control-label", :disabled => true %>
+						<div class="col-lg-12" style="padding-bottom:5px;">
+							<%= f.date_select :payment_due, :class => "form-control input-sm", :disabled => true %>
+						</div>
+					</div>
+				</div>
+				</div> 
+			<div class="row">
+				<div class="col-md-12">
+					<div class="form-group">
+						<%= f.label :description, "Description", :class => "col-lg-12 control-label" %>
+						<div class="col-lg-12">
+							<%= f.text_area :description, :class => "form-control input-sm", :rows => "6", :disabled => true %>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<table>
+						<h4 style="font-family: 'Coda',cursive;font-size:14px;font-weight:bold;">Product/Service</h4></td>
+						<%= f.fields_for :lines do |line| %>
+							<tr>
+								<td style="padding: 3px 1px 0 0; width:47%"><%= line.text_field :product_description, :class => "form-control input-sm", :disabled => true %></td>
+								<td style="padding: 3px 1px 0 0; width:6%"><%= line.text_field :unit, :class => "form-control input-sm", :disabled => true %></td>
+								<td style="padding: 3px 1px 0 0; width:11%"><%= line.text_field :unit_value, :class => "form-control input-sm unit_value", :disabled => true %></td>
+								<td style="padding: 3px 1px 0 0; width:11%"><%= line.text_field :quantity, :class => "form-control input-sm quantity", :disabled => true %></td>
+								<td style="padding: 3px 1px 0 0; width:10%"><%= line.text_field :vat_value, :class => "form-control input-sm vat_value", :disabled => true %></td>
+								<td style="padding: 3px 1px 0 0; width:15%"><%= line.text_field :line_total, :class => "form-control input-sm line_total", :disabled => true %></td>
+							</tr>
+						<% end %>
+					</table>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<table>
+							<tr class="col-md-12">
+								<td class="col-md-2"></td>
+								<td class="col-md-2"></td>
+								<td class="col-md-2"></td>
+								<td class="col-md-2"></td>
+								<td class="col-md-2" style="width:100%; text-align:right;"><h4 style="font-family: 'Coda',cursive;">Subtotal</h4></td>
+								<td class="col-md-2" style="width:100%; text-align:right"><h4 style="font-family: 'Coda',cursive;">0.00</h4></td>
+							</tr>
+							<tr class="col-md-12">
+								<td class="col-md-2"></td>
+								<td class="col-md-2"></td>
+								<td class="col-md-2"></td>
+								<td class="col-md-2"></td>
+								<td class="col-md-2" style="width:100%; text-align:right"><h4 style="font-family: 'Coda',cursive;">Total VAT</h4></td>
+								<td class="col-md-2" style="width:100%; text-align:right"><h4 style="font-family: 'Coda',cursive;">0.00</h4></td>
+							</tr>
+							<tr class="col-md-12">
+								<td class="col-md-2"></td>
+								<td class="col-md-2"></td>
+								<td class="col-md-2"></td>
+								<td class="col-md-2"></td>
+								<td class="col-md-2" style="width:100%; text-align:right"><h3 style="font-family: 'Coda',cursive;">Total</h3></td>
+								<td class="col-md-2" style="width:100%; text-align:right"><h3 style="font-family: 'Coda',cursive;"><%= number_to_currency(@invoice.total, precision: 2, :unit => "£") %></h3></td>
+							</tr>
+					</table>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="col-lg-12">
+						<%= f.text_area :payment_description, :class => "form-control input-sm", :rows => "6", :disabled => true %>
+					</div>
+				</div>
+			</div>
+			<div class="row" style="padding-top:40px">
+			</div>
+		<% end %>
+</div>
+
+<%= link_to 'Edit', edit_invoice_path(@invoice) %> |
+<%= link_to 'Back', invoices_path %>

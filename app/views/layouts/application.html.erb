@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Invoices</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+  <style type="text/css">
+    
+    /* GLOBAL STYLES
+    -------------------------------------------------- */
+    /* Padding below the footer and lighter body text */
+
+    body {
+      padding-bottom: 40px;
+      color: #5a5a5a;
+      background-color: #f6f7f8;
+    }
+    .invoice {
+        background-color: white;
+        padding: 60px;
+        -webkit-box-shadow: 0 1px 3px #7f8596;
+        -moz-box-shadow: 0 1px 3px #7f8596;
+        box-shadow: 0 1px 3px #7f8596;
+      }
+      .invoice_header {
+        -webkit-box-shadow: 0 1px 3px #428bca;
+        -moz-box-shadow: 0 1px 3px #428bca;
+        box-shadow: 0 1px 3px #428bca;
+        background-color: #428bca;
+        margin-bottom:30px; 
+        height:120px;
+      }
+      .page-header {
+        margin-top: 90px;
+      }
+      .in-header {
+        border-bottom: 1px dotted black;
+      }
+      .row {
+        padding-bottom: 20px;
+      }
+
+      td.line_input {
+        padding: 0 1px 0 0;
+      }
+
+      .items_table {
+        display: table;
+        width:100%;
+      }
+
+      .items_table_row {
+        display: table-row;
+        width:100%;
+      }
+
+      .item_table_cell {
+        display: table-cell;
+      }
+
+      input[type="text"]:disabled{
+        background-color:white;
+      }
+
+      input[type="email"]:disabled{
+        background-color:white;
+      }
+
+      textarea[disabled]{
+        background-color:white;
+      }
+
+      .remove {
+        display: none;
+        margin:0;
+      } 
+
+      /* RESPONSIVE CSS
+    -------------------------------------------------- */
+
+    @media (max-width: 979px) {
+
+      .container.navbar-wrapper {
+        margin-bottom: 0;
+        width: auto;
+      }
+      .navbar-inner {
+        border-radius: 0;
+        margin: -20px 0;
+      }      
+    }
+    </style>
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Roboto:500">
+    <link rel="shortcut icon" href="ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="ico/apple-touch-icon-57-precomposed.png">
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+    <link href='http://fonts.googleapis.com/css?family=Coda' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
+</head>
+<body>
+	<div class="navbar-wrapper">
+        <div class="container">
+        <div class="navbar">
+          <div class="navbar-inner">
+            <!-- Responsive Navbar Part 1: Button for triggering responsive navbar (not covered in tutorial). Include responsive CSS to utilize. -->
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </a>
+            <a class="navbar-brand" href="#">Simple invoices</a>
+            <!-- Responsive Navbar Part 2: Place all navbar contents you want collapsed withing .navbar-collapse.collapse. -->
+              <ul class="nav nav-pills pull-right">
+                <li><a href="#">DONATE</a></li>
+                <li><a href="#">ABOUT</a></li>
+              </ul>
+          </div><!-- /.navbar-inner -->
+        </div>
+        </div><!-- /.navbar -->
+      </div><!-- /.container -->
+
+      
+        <div class="row invoice_header">
+          	<div class="container">
+	          <div class="" style="color:white">
+	            <h1>Example page header <small style="color:white">Subtext for header</small></h1>
+	          </div>
+        	</div>
+        </div>
+<%= flash.notice %>
+<%= yield %>
+
+<script type="text/javascript">
+
+    $('.remove:first').remove();
+
+    $('.fields .items_table_row').on('keyup', sum_total);
+    $('.fields .items_table_row').on('keyup', sum_subtotal);
+
+    $(document).on('nested:fieldAdded:lines', show_hide_line_remove_ico);
+
+    $('.fields .items_table_row').hover(show_remove_ico, hide_remove_ico);
+
+    $('.fields .items_table_row').on('keyup', line_total_function);
+
+    $(document).on('nested:fieldAdded:lines', line_total_function_nested);
+
+    $(document).on('nested:fieldAdded:lines', function(event) {
+      $('.fields .items_table_row').on('keyup', sum_total);
+    });
+    $(document).on('nested:fieldAdded:lines', function(event) {
+      $('.fields .items_table_row').on('keyup', sum_subtotal);
+    });
+
+    $(document).on('nested:fieldRemoved:lines', minus_total);
+    $(document).on('nested:fieldRemoved:lines', minus_subtotal);
+
+</script>
+</body>
+</html>

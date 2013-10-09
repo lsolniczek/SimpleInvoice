@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  productDescription: MyString
+  unit: MyString
+  unitValue: 1.5
+  quantity: 1.5
+  vatValue: 1
+  lineTotal: 1.5
+  invoice_id: 1
+
+two:
+  productDescription: MyString
+  unit: MyString
+  unitValue: 1.5
+  quantity: 1.5
+  vatValue: 1
+  lineTotal: 1.5
+  invoice_id: 1

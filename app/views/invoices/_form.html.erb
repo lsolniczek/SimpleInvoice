@@ -1,0 +1,125 @@
+<div class="container">
+  <div class="invoice">
+    <%= nested_form_for @invoice, :html => {multipart: true} do |f| %>
+      <% if @invoice.errors.any? %>
+        <div id="error_explanation" class="alert alert-warning fade in">
+          <a class="close" data-dismiss="alert" href="#" aria-hidden="true">&times;</a>
+          <h3><%= pluralize(@invoice.errors.count, "error") %>, try do something with this:</h3>
+          <% @invoice.errors.full_messages.each do |msg| %>
+            <span><%= msg %></span><span>, </span>
+          <% end %>
+          <div class="row"></div>
+        </div>
+      <% end %>
+      <div class="row" style="padding-bottom: 30px;">
+        <div class="col-md-4">
+          <div class="form-horizontal form-group">
+            <% if @invoice.image.url != nil %>
+              <%= image_tag @invoice.image.url %>
+            <% end %>
+            <label for="yourLogo" class="col-lg-4 control-label">Logo (url)</label>
+            <div class="col-lg-8" style="padding-bottom:10px;">
+              <%= f.file_field :image %>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+          <div class="form-horizontal form-group">
+            <div class="input-group col-lg-8 pull-right">
+              <span class="input-group-addon">#</span>
+              <%= f.text_field :number, :class => "form-control input-sm", :placeholder => "Invoice number" %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <%= f.fields_for :from %>
+        </div>
+        <div class="col-md-4">
+          <%= f.fields_for :to %>
+        </div>
+        <div class="col-md-4">
+          <div class=" form-horizontal form-group" style="padding-top:20px;">
+            <%= f.label :date_issued, "Date Issued:", :class => "control-label" %>
+            <div class="col-lg-12" style="padding-bottom:10px;">
+              <%= f.date_select :date_issued, :class => "form-control input-sm" %>
+            </div>
+              <%= f.label :payment_due, "Payment due:", :class => "control-label" %>
+            <div class="col-lg-12" style="padding-bottom:5px;">
+              <%= f.date_select :payment_due, :class => "form-control input-sm" %>
+            </div>
+          </div>
+        </div>
+        </div> 
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <%= f.label :description, "Description", :class => "col-lg-12 control-label" %>
+            <div class="col-lg-12">
+              <%= f.text_area :description, :class => "form-control input-sm", :rows => "6" %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="items_table">
+            <h4>Product/Service</h4></td>
+            <div class="line">
+              <%= f.fields_for :lines %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <table>
+              <tr class="col-md-12">
+                <td class="col-md-2"><%= f.link_to_add "Add line", :lines, :data => { :target => ".line" }, :class => "btn btn-primary btn-sm add-line" %></td>
+                <td class="col-md-2"></td>
+                <td class="col-md-2"></td>
+                <td class="col-md-2"></td>
+                <td class="col-md-2" style="width:100%; text-align:right;"><h4>Subtotal</h4></td>
+                <td class="col-md-2" style="width:100%; text-align:right"><h4 class="subtotal"><p><%= @invoice.subtotal %></p></h4>
+                  <%= f.hidden_field :subtotal, :class => "hidden_subtotal" %></td>
+              </tr>
+              <tr class="col-md-12">
+                <td class="col-md-2"></td>
+                <td class="col-md-2"></td>
+                <td class="col-md-2"></td>
+                <td class="col-md-2"></td>
+                <td class="col-md-2" style="width:100%; text-align:right"><h4>Total VAT</h4></td>
+                <td class="col-md-2" style="width:100%; text-align:right"><h4 class="total_vat">0.00</h4></td>
+              </tr>
+              <tr class="col-md-12">
+                <td class="col-md-2"></td>
+                <td class="col-md-2"></td>
+                <td class="col-md-2"></td>
+                <td class="col-md-2"></td>
+                <td class="col-md-2" style="width:100%; text-align:right"><h3>Total</h3></td>
+                <td class="col-md-2" style="width:100%; text-align:right"><h3 class="total"><p><%= @invoice.total %></p></h3>
+                  <%= f.hidden_field :total, :class => "hidden_total" %>
+                </td>
+              </tr>
+          </table>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="col-lg-12">
+            <%= f.text_area :payment_description, :class => "form-control input-sm", :rows => "6", :placeholder => "Payment description" %>
+          </div>
+        </div>
+      </div>
+      <div class="row" style="padding-top:40px">
+        <div class="col-md-12">
+          <div class="pull-right">
+            <button type="button" class="btn btn-warning">Clear form</button>
+            <%= f.submit "Add to send", :class => "btn btn-primary" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+</div>

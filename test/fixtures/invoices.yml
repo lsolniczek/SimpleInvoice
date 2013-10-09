@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  number: MyString
+  dateIssued: 2013-09-17
+  paymentDue: 2013-09-17
+  description: MyText
+  paymentDescription: MyText
+
+two:
+  number: MyString
+  dateIssued: 2013-09-17
+  paymentDue: 2013-09-17
+  description: MyText
+  paymentDescription: MyText
