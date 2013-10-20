@@ -66,10 +66,10 @@ var sum_total = function() {
 	});
 
 	$('.total p').remove();
-	var sum_total_formatted = $.number(sum_total, 2, '.', '' );
+	var sum_total_formatted = $.number(sum_total, 2, '.', ' ' );
 	$('.total').append('<p>'+sum_total_formatted+'</p>');
 
-	$('.hidden_total').val(sum_total_formatted);
+	$('.hidden_total').val(sum_total);
 
 };
 
@@ -93,10 +93,10 @@ var sum_subtotal = function() {
 
 
   $('.subtotal p').remove();
-  var sum_subtotal_formatted = $.number(sum_subtotal, 2, '.', '' );
+  var sum_subtotal_formatted = $.number(sum_subtotal, 2, '.', ' ' );
   $('.subtotal').append('<p>'+sum_subtotal_formatted+'</p>');
 
-  $('.hidden_subtotal').val(sum_subtotal_formatted);
+  $('.hidden_subtotal').val(sum_subtotal);
 
 };
 
@@ -105,4 +105,29 @@ var minus_subtotal = function(event) {
   var removed_uvalue = field.find('.unit_value').val(0.00);
   var removed_quantity = field.find('.quantity').val(0.00);
   sum_subtotal();
+};
+
+var vat_total = function() {
+  var vat_total = 0.00;
+
+  $('.line .fields').each(function(index) { 
+    var line_vat = parseFloat($(this).find('.vat_value').val()); 
+    var line_uvalue = parseFloat($(this).find('.unit_value').val());
+    var line_quantity = parseFloat($(this).find('.quantity').val());
+    var sum_vat_line = (line_uvalue*line_quantity)*(line_vat/100);
+    vat_total = vat_total+sum_vat_line;
+  });
+
+  $('.total_vat p').remove();
+  var sum_vat_formatted = $.number(vat_total, 2, '.', ' ' );
+  $('.total_vat').append('<p>'+sum_vat_formatted+'</p>');
+
+  $('.hidden_vat').val(vat_total);
+
+};
+
+var minus_vat = function(event) {
+  var field = event.field; 
+  var removed_vat_line = field.find('.vat_value').val(" ");
+  vat_total();
 };

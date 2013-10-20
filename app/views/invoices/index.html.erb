@@ -27,12 +27,12 @@
                 <td><%= i.description %></td>
                 <td><%= i.to.name %></td>
                 <td><%= i.to.email %></td>
-                <td><%= i.total %></td>
+                <td><%= number_to_currency(i.total, precision: 2) %></td>
                 <td>
                   <%= link_to image_tag("edit.png", :border => 0, :width => 13, :height => 13), edit_invoice_path(i), :style => "padding-right: 5px;" %>
                   <%= link_to image_tag("show.png", :border => 0, :width => 13, :height => 13), invoice_path(i), :style => "padding-right: 5px;" %>
                   <%= link_to image_tag("remove.png", :border => 0, :width => 13, :height => 13), invoice_path(i), method: :delete, data: { confirm: 'Are you sure?' }, :style => "padding-right: 5px;"  %>
-                  <%= link_to image_tag("show.png", :border => 0, :width => 13, :height => 13), invoice_path(i, :format => "pdf"), :style => "padding-right: 5px;" %>
+                  <%= link_to image_tag("pdf.png", :border => 0, :width => 13, :height => 13), invoice_path(i, :format => "pdf"), :style => "padding-right: 5px;" %>
                 </td>
               </tr>
             <% end %>
@@ -46,7 +46,6 @@
     <div class="col-md-12">
       <% unless @invoices.blank? %>
         <div class="pull-left">
-          <button type="button" class="btn btn-success">Generate Excel</button>
           <%= link_to "Send to clients", send_invoice_path, :class => "btn btn-danger" %>
         </div>
       <% end %>  

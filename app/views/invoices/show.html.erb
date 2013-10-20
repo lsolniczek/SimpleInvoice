@@ -109,7 +109,7 @@
 								<td class="col-md-2"></td>
 								<td class="col-md-2"></td>
 								<td class="col-md-2" style="width:100%; text-align:right;"><h4 style="font-family: 'Coda',cursive;">Subtotal</h4></td>
-								<td class="col-md-2" style="width:100%; text-align:right"><h4 style="font-family: 'Coda',cursive;">0.00</h4></td>
+								<td class="col-md-2" style="width:100%; text-align:right"><h4 style="font-family: 'Coda',cursive;"><%= number_to_currency(@invoice.subtotal, precision: 2) %></h4></td>
 							</tr>
 							<tr class="col-md-12">
 								<td class="col-md-2"></td>
@@ -117,7 +117,7 @@
 								<td class="col-md-2"></td>
 								<td class="col-md-2"></td>
 								<td class="col-md-2" style="width:100%; text-align:right"><h4 style="font-family: 'Coda',cursive;">Total VAT</h4></td>
-								<td class="col-md-2" style="width:100%; text-align:right"><h4 style="font-family: 'Coda',cursive;">0.00</h4></td>
+								<td class="col-md-2" style="width:100%; text-align:right"><h4 style="font-family: 'Coda',cursive;"><%= number_to_currency(@invoice.total_vat, precision: 2) %></h4></td>
 							</tr>
 							<tr class="col-md-12">
 								<td class="col-md-2"></td>
@@ -125,7 +125,7 @@
 								<td class="col-md-2"></td>
 								<td class="col-md-2"></td>
 								<td class="col-md-2" style="width:100%; text-align:right"><h3 style="font-family: 'Coda',cursive;">Total</h3></td>
-								<td class="col-md-2" style="width:100%; text-align:right"><h3 style="font-family: 'Coda',cursive;"><%= number_to_currency(@invoice.total, precision: 2, :unit => "£") %></h3></td>
+								<td class="col-md-2" style="width:100%; text-align:right"><h3 style="font-family: 'Coda',cursive;"><%= number_to_currency(@invoice.total, precision: 2) %></h3></td>
 							</tr>
 					</table>
 				</div>

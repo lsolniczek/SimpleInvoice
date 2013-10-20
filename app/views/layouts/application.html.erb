@@ -147,6 +147,7 @@
 
     $('.fields .items_table_row').on('keyup', sum_total);
     $('.fields .items_table_row').on('keyup', sum_subtotal);
+    $('.fields .items_table_row').on('keyup', vat_total);
 
     $(document).on('nested:fieldAdded:lines', show_hide_line_remove_ico);
 
@@ -162,9 +163,13 @@
     $(document).on('nested:fieldAdded:lines', function(event) {
       $('.fields .items_table_row').on('keyup', sum_subtotal);
     });
+    $(document).on('nested:fieldAdded:lines', function(event) {
+      $('.fields .items_table_row').on('keyup', vat_total);
+    });
 
     $(document).on('nested:fieldRemoved:lines', minus_total);
     $(document).on('nested:fieldRemoved:lines', minus_subtotal);
+    $(document).on('nested:fieldRemoved:lines', minus_vat);
 
 </script>
 </body>

@@ -82,7 +82,7 @@
                 <td class="col-md-2"></td>
                 <td class="col-md-2"></td>
                 <td class="col-md-2" style="width:100%; text-align:right;"><h4>Subtotal</h4></td>
-                <td class="col-md-2" style="width:100%; text-align:right"><h4 class="subtotal"><p><%= @invoice.subtotal %></p></h4>
+                <td class="col-md-2" style="width:100%; text-align:right"><h4 class="subtotal"><p><%= number_to_currency(@invoice.subtotal, precision: 2) %></p></h4>
                   <%= f.hidden_field :subtotal, :class => "hidden_subtotal" %></td>
               </tr>
               <tr class="col-md-12">
@@ -91,7 +91,9 @@
                 <td class="col-md-2"></td>
                 <td class="col-md-2"></td>
                 <td class="col-md-2" style="width:100%; text-align:right"><h4>Total VAT</h4></td>
-                <td class="col-md-2" style="width:100%; text-align:right"><h4 class="total_vat">0.00</h4></td>
+                <td class="col-md-2" style="width:100%; text-align:right"><h4 class="total_vat"><p><%= number_to_currency(@invoice.total_vat, precision: 2) %></p></h4>
+                <%= f.hidden_field :total_vat, :class => "hidden_vat" %>
+                </td>
               </tr>
               <tr class="col-md-12">
                 <td class="col-md-2"></td>
@@ -99,7 +101,7 @@
                 <td class="col-md-2"></td>
                 <td class="col-md-2"></td>
                 <td class="col-md-2" style="width:100%; text-align:right"><h3>Total</h3></td>
-                <td class="col-md-2" style="width:100%; text-align:right"><h3 class="total"><p><%= @invoice.total %></p></h3>
+                <td class="col-md-2" style="width:100%; text-align:right"><h3 class="total"><p><%= number_to_currency(@invoice.total, precision: 2) %></p></h3>
                   <%= f.hidden_field :total, :class => "hidden_total" %>
                 </td>
               </tr>
