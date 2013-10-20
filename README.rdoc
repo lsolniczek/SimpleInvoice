@@ -1,28 +1,27 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Witajcie!!!
 
-Things you may want to cover:
+Jest to projekt szkoleniowy, w którym chcia³em przygotowaæ prost¹ aplikacjê do przygotowywania i przesy³ania Faktur. 
 
-* Ruby version
+Aplikacja pozwala na:
 
-* System dependencies
+* Przygotowanie za pomoc¹ prostego formularza faktury
+* Wygenerowanie pliku pdf utworzonej faktury
+* Za pomoc¹ jedngeo przycisku, przekazanie drog¹ mailow¹ wszytkich faktur na adresy mailowe odbiorców 
 
-* Configuration
+W projekcie wykorzysta³em nastêpuj¹ce gem-y:
 
-* Database creation
+* nested_form <tt>gem "nested_form"</tt>
 
-* Database initialization
+* prawn <tt>gem "prawn"</tt>
 
-* How to run the test suite
+* paperclip <tt>gem "paperclip"</tt>
 
-* Services (job queues, cache servers, search engines, etc.)
+Oprócz tego:
 
-* Deployment instructions
+* bootstrap
 
-* ...
+* oraz masa jQuery ;)
 
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+Projekt by³ robiony w ramach nauki Rails wiêc napewno jest w nim sporo rzeczy do ulepszenia, bêdê siê staral to robiæ na bie¿¹co. Je¿eli tylko macie ochotê coœ podpowiedzieæ to œmia³o :)
